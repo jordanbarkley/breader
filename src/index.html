@@ -7,13 +7,49 @@
 
         <!-- Firebase imports -->
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+
+
+        <!-- copied from github.com/firebase/firebaseui-web -->
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+        <script type="text/javascript">
+            // FirebaseUI config.
+            var uiConfig = {
+                signInSuccessUrl: "something.html",
+                signInOptions: [
+                    {
+                        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                        requireDisplayName: true
+                    },                
+                ],
+                // tosUrl and privacyPolicyUrl accept either url string or a callback
+                // function.
+                // Terms of service url/callback.
+                tosUrl: "tos.html",
+                // Privacy policy url/callback.
+                privacyPolicyUrl: function() {
+                    window.location.assign("tos.html");
+                }
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+            
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
+        </script>
 
     </head>
 
     <body>
         <!-- title of the page-->
         <h1>Breader</h1>
+
+        <!-- FirebaseUI Auth Container -->
+        <div id="firebaseui-auth-container"></div>
 
         <!-- description of the page -->
         <h2> A One Word Reader by Jobin and Ishan</h2>
