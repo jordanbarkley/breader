@@ -5,35 +5,33 @@
         <!-- name of the file-->
         <title> index </title>
 
-        <!-- include Firebase -->
-        <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+        <!-- Firebase imports -->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
 
-        <!-- include Firebase services -->
-        <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-functions.js"></script>
-        
-        <!-- generated in Firebase console-->
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyCw9tTlFUEwgjQ84PZKarqsxLTMlj7OHrk",
-                authDomain: "breader-cs252.firebaseapp.com",
-                databaseURL: "https://breader-cs252.firebaseio.com",
-                projectId: "breader-cs252",
-                storageBucket: "breader-cs252.appspot.com",
-                messagingSenderId: "923894668859"
-            };
-            firebase.initializeApp(config);
-        </script>
     </head>
 
     <body>
         <!-- title of the page-->
         <h1>Breader</h1>
 
-        <!-- line of text -->
-        <p> A One Word Reader by Jobin and Ishan</p>
+        <!-- description of the page -->
+        <h2> A One Word Reader by Jobin and Ishan</h2>
+
+        <!-- test form -->
+        <input type="textfield" id="inputValue"/>
+
+        <!-- save testValue button -->
+        <button id="buttonSaveValue">Save</button>
+
+        <!-- load testValue button-->
+        <button id="buttonLoadValue">Load</button>
+
+        <!-- current Value in database -->
+        <p id="outputValue">Try pressing load!</p>
+
+        <!-- JavaScript source-->
+        <script src="app.js"></script>
     </body>
 
 </html>
