@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- name of the file-->
+        <title> Breader - Texts </title>
+
+        <!-- Firebase imports -->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+
+    </head>
+
+    <body>
+        <!-- title of the page-->
+        <h1>Texts</h1>
+        <h1>Actually just a test page</h1>
+
+        <!-- description of the page -->
+        <h2> A One Word Reader by Jobin and Ishan</h2>
+
+        <!-- test form -->
+        <input type="textfield" id="inputValue"/>
+
+        <!-- save testValue button -->
+        <button id="buttonSaveValue">Save</button>
+
+        <!-- load testValue button-->
+        <button id="buttonLoadValue">Load</button>
+
+        <!-- current Value in database -->
+        <p id="outputValue">Try pressing load!</p>
+
+        <!-- init firebase?-->
+        <script src="init.js"></script>
+
+
+        <!-- JavaScript source-->
+        <script src="app.js"></script>
+    </body>
+
+</html>
