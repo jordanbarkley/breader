@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- file to create base website format -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- name of the file-->
+    <title> Breader Homepage </title>
+
+    <!-- bootstrap styling -->
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    <!-- include Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+
+    <!-- include Firebase services -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-functions.js"></script>
+    
+    <!-- generated in Firebase console-->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCw9tTlFUEwgjQ84PZKarqsxLTMlj7OHrk",
+            authDomain: "breader-cs252.firebaseapp.com",
+            databaseURL: "https://breader-cs252.firebaseio.com",
+            projectId: "breader-cs252",
+            storageBucket: "breader-cs252.appspot.com",
+            messagingSenderId: "923894668859"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="index.html">Breader</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <!--{% if current_user.is_authenticated %}
+                    <li><a><i class="fa fa-user"></i> Hi, {{ current_user.username }}!</a></li>
+                    <li><a >Dashboard</a></li>   
+                    <li><a>Messages</a></li>
+                    <li><a>Settings</a></li>
+                    <li><a>Logout</a></li>
+                  {% else %} -->
+                    <li><a><i class="fa fa-user"></i> Hi, User!</a></li>
+                    <!-- <li><a href="index.html">Home</a></li> -->
+                    <li><a href="books.html">Books</a></li>
+                    <li><a href="addBook.html">Add Book</a></li>
+                    <li><a>Logout</a></li>
+                  <!--{% endif %}-->
+              </ul>
+          </div>
+        </div>
+    </nav>
+    <div class = "intro-header">
+        <div class="container">
+            <div class="row">
+            </div>
+            <div class = "row">
+                <div class = "col-lg-12">
+                    <div class="intro-message">
+                      <h2>Hidden Text</h2>
+                      <h3>Now reading: Book/File Name</h3>
+                    <hr class="intro-divider">
+                    </div>
+                    <div class="container">
+                    <div class="jumbotron">
+                      <div class="row">
+                      <p id="currentWord">Current Word</p>
+                      </div>
+                      <div class="row">
+                      <button class="btn btn-success">Start/Stop</button>
+                      </div>
+                    </div>
+                    <hr class="intro-divider">
+                    <form>
+                      <div class="form-group">
+                      <label for="fontSize">Font Size:</label>
+                      <select name="fontSize" id="fontSize">
+                        <option>Small</option>
+                        <option>Medium-small</option>
+                        <option>Medium</option>
+                        <option>Medium-large</option>
+                        <option>Large</option>
+                      </select>
+                      <label for="speed">Speed(WPM):</label>
+                      <select name="speed" id="speed">
+                        <option>100</option>
+                        <option>200</option>
+                        <option>300</option>
+                        <option>400</option>
+                        <option>400</option>
+                        <option>500</option>
+                        <option>600</option>
+                        <option>700</option>
+                      </select>
+                      <label for="color">Font Color:</label>
+                      <select name="color" id="color">
+                        <option>Black</option>
+                        <option>Blue</option>
+                        <option>Red</option>
+                        <option>Green</option>
+                        <option>Purple</option>
+                      </select>
+                      <label for="alignment">Page Alignment:</label>
+                      <select name="alignment" id="alignment">
+                        <option>Left</option>
+                        <option>Centered</option>
+                        <option>Right</option>
+                      </select>
+                      <button class="btn btn-primary btn-sm">Apply Settings</button>
+                      </div>
+                      <!-- <button class="btn btn-success btn-lg">Start/Stop</button> -->
+                    </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- init firebase -->
+        <script src="init.js"></script>
+
+        <!-- JavaScript source-->
+        <script src="app.js"></script>
+</body>
+</html>
