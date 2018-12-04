@@ -1,4 +1,4 @@
-console.log("app.js included");
+console.log("functions.js included");
 
 // get relevant html elements
 const paragraphOutput = document.querySelector("#outputValue");
@@ -16,12 +16,73 @@ buttonTest.addEventListener("click", function() {
     breaderAddText("The Itsy Bitsy Spider", "went up the water spout or some shit idk this is just for testing");
     breaderSetWPM(500);
 
+    /*
     breaderGetText("The Itsy Bitsy Spider").then(function(value) {
         paragraphOutput.innerHTML = JSON.stringify(value);
     });
+    */
+
+    var testText = "yeah\ti'm a piece   \t\n of shit\n, you know i  plead the         fifth, i tell her holla if you need some dick";
+    
+    // remove duplicate white space
+    testText = testText.replace(/\s+/g, ' ');
+
+    // get the array of words
+    getTextArray(testText);
+
+    // display words
+    setInterval(displayWord, 500);
 });
 
+// Breader global vars
+var textArr;
+var currentWord = 0;
+
 // Breader functions
+
+// displays a word in paragraphOutput
+function displayWord() {
+    var word = getWord();
+    paragraphOutput.innerHTML = word;
+}
+
+// gets current word and advances currentWord global var
+function getWord() {
+    if (currentWord == textArr.length) {
+        return "DONE.";
+    }
+
+    var ret = textArr[currentWord];
+    currentWord++;
+    return ret;
+}
+
+
+// sets a global variable textArr to a array of strings seperated by a space
+// @param - string text
+function getTextArray(text) {
+    textArr = text.split(' ');
+}
+
+// string parsing function, removes duplicate white space and replaces all white space with standard space
+// @param - string text
+String.prototype.allTrim = String.prototype.allTrim ||
+     function(){
+        return this.replace(/\s+/g,' ')
+                   .replace(/^\s+|\s+$/,'');
+     };
+
+
+
+// determines if a character is white space
+// @param - char c
+function isWhiteSpace(c) {
+    if ((c <= 32 && c >= 0) || c == 127) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 // @param - string name ("The Itsy Bitsy Spider")
 // @param - string text (<the itsy bits spider lyrics>)
