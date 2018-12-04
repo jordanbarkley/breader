@@ -1,8 +1,5 @@
 console.log("app.js included");
 
-// TODO: remove this
-const USERNAME = "username";  
-
 // get relevant html elements
 const paragraphOutput = document.querySelector("#outputValue");
 const buttonTest = document.querySelector("#buttonTest");
@@ -12,46 +9,82 @@ var database = firebase.database();
 
 // add a listener for click event on test button
 buttonTest.addEventListener("click", function() {
-    paragraphOutput.innerHTML = breaderGetUID();
     breaderSetBackgroundColor("#001122");
     breaderSetCardColor("#334455");
-    breaderSetFontSize("#667788");
+    breaderSetFontColor("#667788");
+    breaderSetFontSize(12);
     breaderAddText("The Itsy Bitsy Spider", "went up the water spout or some shit idk this is just for testing");
     breaderSetWPM(500);
+
+    breaderGetText("The Itsy Bitsy Spider").then(function(value) {
+        paragraphOutput.innerHTML = JSON.stringify(value);
+    });
 });
 
 // Breader functions
 
-// string name ("The Itsy Bitsy Spider")
-// string text (<the itsy bits spider lyrics>)
+// @param - string name ("The Itsy Bitsy Spider")
+// @param - string text (<the itsy bits spider lyrics>)
 function breaderAddText(name, text) {
     breaderSetX("texts/" + name, text);
 }
 
-// htmlColor color ("#RRGGBB")
+// @param - htmlColor color ("#RRGGBB")
 function breaderSetBackgroundColor(color) {
     breaderSetX("backgroundColor", color);
 }
 
-// htmlColor color ("#RRGGBB")
+// @param - htmlColor color ("#RRGGBB")
 function breaderSetCardColor(color) {
     breaderSetX("cardColor", color);
 }
 
-// htmlColor color ("#RRGGBB")
+// @param - htmlColor color ("#RRGGBB")
 function breaderSetFontColor(color) {
     breaderSetX("fontColor", color);
 }
 
-// int size
+// @param - int size
 function breaderSetFontSize(size) {
     breaderSetX("fontSize", size);
 }
 
-// int wpm
+// @param - int wpm
 function breaderSetWPM(wpm) {
     breaderSetX("wpm", wpm);
 }
+
+// @promise - htmlColor color ("#RRGGBB")
+function breaderGetBackgroundColor() {
+    return breaderGetX("backgroundColor");
+}
+
+// @promise - htmlColor color ("#RRGGBB")
+function breaderGetCardColor() {
+    return breaderGetX("cardColor");
+}
+
+// @promise - htmlColor color ("#RRGGBB")
+function breaderGetFontColor() {
+    return breaderGetX("fontColor");
+}
+
+// @promise - int size
+function breaderGetFontSize() {
+    return breaderGetX("fontSize");
+}
+
+// @param - name
+// @promise - text
+function breaderGetText(name) {
+    return breaderGetX("texts/" + name);
+}
+
+// @promise - int wpm
+function breaderGetWPM() {
+    return breaderGetX("wpm");
+}
+
 
 // DO NOT USE THE FUNCTIONS BELOW OUTSIDE OF "app.js"
 function breaderGetUID() {
@@ -66,6 +99,26 @@ function breaderGetUID() {
     // if user is not logged in
     } else {
         // return null
+        return null;
+    }
+}
+
+function breaderGetX(path) {
+    // get uid
+    var uid = breaderGetUID();
+
+    // if there's a valid uid
+    if (uid) {
+
+        // get /<uid>/path
+        return database.ref(uid + "/" + path).once("value", function(snapshot) {
+            return snapshot.val() || null;
+        });
+
+    // otherwise
+    } else {
+        // log an error
+        console.log("Unable to get uid. Is the user logged in?");
         return null;
     }
 }
