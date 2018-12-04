@@ -1,38 +1,14 @@
-console.log("functions.js included");
-
-// get relevant html elements
-const paragraphOutput = document.querySelector("#outputValue");
-const buttonTest = document.querySelector("#buttonTest");
-
+// :)
+console.log("app.js included");
+ 
 // Get a reference to the database service
 var database = firebase.database();
 
-// add a listener for click event on test button
-buttonTest.addEventListener("click", function() {
-    breaderSetBackgroundColor("#001122");
-    breaderSetCardColor("#334455");
-    breaderSetFontColor("#667788");
-    breaderSetFontSize(12);
-    breaderAddText("The Itsy Bitsy Spider", "went up the water spout or some shit idk this is just for testing");
-    breaderSetWPM(500);
+// make sure the user is signed in, otherwise return to index.html
+if (breaderGetUID() == null) {
+    window.location.href = "index.html";
+}
 
-    /*
-    breaderGetText("The Itsy Bitsy Spider").then(function(value) {
-        paragraphOutput.innerHTML = JSON.stringify(value);
-    });
-    */
-
-    var testText = "yeah\ti'm a piece   \t\n of shit\n, you know i  plead the         fifth, i tell her holla if you need some dick";
-    
-    // remove duplicate white space
-    testText = testText.replace(/\s+/g, ' ');
-
-    // get the array of words
-    getTextArray(testText);
-
-    // display words
-    setInterval(displayWord, 500);
-});
 
 // Breader global vars
 var textArr;
@@ -57,22 +33,11 @@ function getWord() {
     return ret;
 }
 
-
 // sets a global variable textArr to a array of strings seperated by a space
 // @param - string text
 function getTextArray(text) {
     textArr = text.split(' ');
 }
-
-// string parsing function, removes duplicate white space and replaces all white space with standard space
-// @param - string text
-String.prototype.allTrim = String.prototype.allTrim ||
-     function(){
-        return this.replace(/\s+/g,' ')
-                   .replace(/^\s+|\s+$/,'');
-     };
-
-
 
 // determines if a character is white space
 // @param - char c
@@ -145,7 +110,6 @@ function breaderGetText(name) {
 function breaderGetWPM() {
     return breaderGetX("wpm");
 }
-
 
 // DO NOT USE THE FUNCTIONS BELOW OUTSIDE OF "app.js"
 function breaderGetUID() {
