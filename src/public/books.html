@@ -54,8 +54,8 @@
                     <li><a>Settings</a></li>
                     <li><a>Logout</a></li>
                   {% else %} -->
-                    <li><a>Home</a></li>
-                    <li><a href="login.html">Login or Register</a></li>
+                    <li><a><i class="fa fa-user" id="navBarUser"></i>Hi, User</a></li>
+                    <li><a href="login.html">Logout</a></li>
                   <!--{% endif %}-->
               </ul>
           </div>
@@ -73,9 +73,13 @@
                     <h3>Read books and articles many times faster using our speed reading system.</h3>
                     <h3>Sign up or log in to get started today!</h3> -->
                     <div class="container">
+                        <h1>Click on a book to start reading!</h1>
                         <div class="jumbotron">
-                            <h1>Welcome to BReader!</h1>
-                            <p>Read books and articles many times faster using our speed reading system. Sign up or log in to get started today!</p>
+                            <ul id="bookList">
+                                <li><button class="btn-primary btn-block">Book1</button></li>
+                                <li><button class="btn-primary btn-block">Book2</button></li>
+                                <li><button class="btn-primary btn-block">Book3</button></li>
+                            </ul>
                         </div>
                     </div>
                     <hr class="intro-divider">
@@ -84,5 +88,14 @@
             </div>
         </div>
     </div>
+
+     <!-- init firebase -->
+        <script src="init.js"></script>
+
+        <!-- JavaScript source-->
+        <script src="app.js"></script>
+
+        <!-- updates navbar for username-->
+        <!-- <script src="books.js"></script> -->
 </body>
 </html>
