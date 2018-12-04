@@ -1,14 +1,22 @@
-// :)
 console.log("app.js included");
- 
+
+// get relevant html elements
+const paragraphOutput = document.querySelector("#outputValue");
+const buttonTest = document.querySelector("#buttonTest");
+
 // Get a reference to the database service
 var database = firebase.database();
 
-// make sure the user is signed in, otherwise return to index.html
-if (breaderGetUID() == null) {
-    window.location.href = "index.html";
-}
+var testText = "yeah\ti'm a piece   \t\n of shit\n, you know i  plead the         fifth, i tell her holla if you need some dick";
+    
+// remove duplicate white space
+testText = testText.replace(/\s+/g, ' ');
 
+// get the array of words
+getTextArray(testText);
+
+// yes
+// setInterval(displayWord, 500);
 
 // Breader global vars
 var textArr;
@@ -110,6 +118,7 @@ function breaderGetText(name) {
 function breaderGetWPM() {
     return breaderGetX("wpm");
 }
+
 
 // DO NOT USE THE FUNCTIONS BELOW OUTSIDE OF "app.js"
 function breaderGetUID() {

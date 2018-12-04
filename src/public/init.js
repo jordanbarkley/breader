@@ -8,3 +8,13 @@ var config = {
     messagingSenderId: "923894668859"
 };
 firebase.initializeApp(config);
+
+// make sure the user is logged in
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // user signed in, do nothing
+    } else {
+        // user is not signed in, redirect to index.html
+        window.location.href = "index.html";
+    }
+});
