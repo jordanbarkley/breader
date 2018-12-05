@@ -16,6 +16,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(user.uid);
     } else {
         // user is not signed in, redirect to index.html
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
     }
 });

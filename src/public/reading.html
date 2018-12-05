@@ -61,9 +61,9 @@
                     <hr class="intro-divider">
                     </div>
                     <div class="container">
-                    <div class="jumbotron">
-                      <div class="row">
-                      <p id="currentWord">Current Word</p>
+                    <div class="jumbotron" id="jumbotron">
+                      <div class="row" >
+                      <p style="text-align: center" id="currentWord">Current Word</p>
                       </div>
                       <div class="row">
                       </div>
@@ -72,25 +72,26 @@
                       
                         <button id="startButton" class="btn btn-success">Start</button>
                       
-                      
                         <button id="resetButton" class="btn btn-primary">Reset</button>
                       
                         <button id="stopButton" class="btn btn-danger">Stop</button>
                     
                     
                     <hr class="intro-divider">
-                    <form>
                       <div class="form-group">
                       <label for="fontSize">Font Size:</label>
                       <select name="fontSize" id="fontSize">
-                        <option>Small</option>
-                        <option>Medium-small</option>
-                        <option>Medium</option>
-                        <option>Medium-large</option>
-                        <option>Large</option>
+                        <option>xx-small</option>
+                        <option>x-small</option>
+                        <option>small</option>
+                        <option>medium</option>
+                        <option>large</option>
+                        <option>x-large</option>
+                        <option>xx-large</option>
                       </select>
                       <label for="speed">Speed(WPM):</label>
                       <select name="speed" id="speed">
+                          <!--
                         <option>100</option>
                         <option>200</option>
                         <option>300</option>
@@ -99,25 +100,65 @@
                         <option>500</option>
                         <option>600</option>
                         <option>700</option>
+                          -->
                       </select>
-                      <label for="color">Font Color:</label>
-                      <select name="color" id="color">
-                        <option>Black</option>
-                        <option>Blue</option>
-                        <option>Red</option>
-                        <option>Green</option>
-                        <option>Purple</option>
+                      <label for="backgroundColor">Background Color:</label>
+                      <select name="backgroundColor" id="backgroundColor">
+                        <option>white</option>
+                        <option>silver</option>
+                        <option>gray</option>
+                        <option>black</option>
+                        <option>red</option>
+                        <option>maroon</option>
+                        <option>yellow</option>
+                        <option>lime</option>
+                        <option>green</option>
+                        <option>aqua</option>
+                        <option>teal</option>
+                        <option>blue</option>
+                        <option>navy</option>
+                        <option>fuschsia</option>
+                        <option>purple</option>
                       </select>
-                      <label for="alignment">Page Alignment:</label>
-                      <select name="alignment" id="alignment">
-                        <option>Left</option>
-                        <option>Centered</option>
-                        <option>Right</option>
+                      <label for="fontColor">Font Color:</label>
+                      <select name="fontColor" id="fontColor">
+                        <option>white</option>
+                        <option>silver</option>
+                        <option>gray</option>
+                        <option>black</option>
+                        <option>red</option>
+                        <option>maroon</option>
+                        <option>yellow</option>
+                        <option>lime</option>
+                        <option>green</option>
+                        <option>aqua</option>
+                        <option>teal</option>
+                        <option>blue</option>
+                        <option>navy</option>
+                        <option>fuschsia</option>
+                        <option>purple</option>
                       </select>
-                      <button class="btn btn-primary btn-sm">Apply Settings</button>
+                      <label for="cardColor">Card Color:</label>
+                      <select name="cardColor" id="cardColor">
+                        <option>white</option>
+                        <option>silver</option>
+                        <option>gray</option>
+                        <option>black</option>
+                        <option>red</option>
+                        <option>maroon</option>
+                        <option>yellow</option>
+                        <option>lime</option>
+                        <option>green</option>
+                        <option>aqua</option>
+                        <option>teal</option>
+                        <option>blue</option>
+                        <option>navy</option>
+                        <option>fuschsia</option>
+                        <option>purple</option>
+                      </select>
+                      <button class="btn btn-primary btn-sm" id="buttonApplySettings">Apply Settings</button>
                       </div>
                       <!-- <button class="btn btn-success btn-lg">Start/Stop</button> -->
-                    </form>
                     
                     </div>
                 </div>
