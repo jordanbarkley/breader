@@ -13,6 +13,7 @@ firebase.initializeApp(config);
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // user signed in, do nothing
+        console.log(user.uid);
     } else {
         // user is not signed in, redirect to index.html
         window.location.href = "index.html";
