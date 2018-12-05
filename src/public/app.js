@@ -116,7 +116,6 @@ function breaderGetX(path) {
     }
 }
 
-
 function breaderSetX(path, value) {
     // get uid
     var uid = breaderGetUID();

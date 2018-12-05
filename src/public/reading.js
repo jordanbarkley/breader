@@ -1,8 +1,11 @@
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // user is signed in so get the book they have
+        getInitialSettings();
         var uid = user.uid;
         console.log("book name: " + book);
+        var bookName = document.getElementById("bookName");
+        bookName.innerHTML = "Now Reading: " + book;
 
         database.ref(uid + "/texts/" + book).once("value", function(snapshot) {
             // get text
@@ -26,7 +29,7 @@ var currentWord = 0;
 var displaying = false;
 var book = getParameterByName("book"); 
 var interval = null;
-var speed = 0;
+var speed = 300;
 
 // html elements
 var startButton = document.getElementById("startButton");
@@ -100,7 +103,7 @@ function isWhiteSpace(c) {
 startButton.addEventListener("click", function() {
     if (!displaying) {
         displaying = true;
-        interval = setInterval(displayWord, 500);
+        interval = setInterval(displayWord, 60000/speed);
     }
 });
 
@@ -119,6 +122,66 @@ resetButton.addEventListener("click", function() {
     currentWord = 0;
     displayWord();
 });
+
+function getInitialSettings() {
+
+    breaderGetFontColor().then(function(value) {
+        var fontColor = JSON.stringify(value);
+        fontColor = fontColor.replace('"','');
+        fontColor = fontColor.replace('"','');
+        setSelectedValue(dropdownFontColor, fontColor);
+        paragraphCurrentWord.style.color = fontColor;
+        console.log("fontcolor: " + fontColor);
+    });
+
+    breaderGetFontSize().then(function(value) {
+        var fontSize = JSON.stringify(value);
+        fontSize = fontSize.replace('"','');
+        fontSize = fontSize.replace('"','');
+        setSelectedValue(dropdownFontSize, fontSize);
+        paragraphCurrentWord.style.fontSize = fontSize;
+        console.log("fontSize: " + fontSize);
+    });
+
+    
+    breaderGetCardColor().then(function(value) {
+        var cardColor = JSON.stringify(value);
+        cardColor = cardColor.replace('"','');
+        cardColor = cardColor.replace('"','');
+        setSelectedValue(dropdownCardColor, cardColor);
+        jumbotron.style.backgroundColor = cardColor;
+        console.log("cardColor: " + cardColor);
+    });
+
+    breaderGetWPM().then(function(value) {
+        var wpm = JSON.stringify(value);
+        wpm = wpm.replace('"','');
+        wpm = wpm.replace('"','');
+        setSelectedValue(dropdownSpeed, wpm);
+        speed = wpm;
+        console.log("wpm: " + wpm);
+    });
+
+    breaderGetBackgroundColor().then(function(value) {
+        var backgroundColor = JSON.stringify(value);
+        backgroundColor = backgroundColor.replace('"','');
+        backgroundColor = backgroundColor.replace('"','');
+        setSelectedValue(dropdownBackgroundColor, backgroundColor);
+        document.body.style.backgroundColor = backgroundColor;
+        console.log("backgroundColor: " + backgroundColor);
+    });
+}
+
+
+
+function setSelectedValue(dropdown, value) {
+    for (var i = 0; i < dropdown.options.length; i++) {
+        if (dropdown.options[i].text == value) {
+            dropdown.options[i].selected = true;
+            return;
+        }
+    }
+}
 
 function applySettings() {
     var fontColor = dropdownFontColor.options[dropdownFontColor.selectedIndex].value;
@@ -139,7 +202,6 @@ function applySettings() {
     var backgroundColor = dropdownBackgroundColor.options[dropdownBackgroundColor.selectedIndex].value;
     document.body.style.backgroundColor = backgroundColor;
     breaderSetBackgroundColor(backgroundColor);
-
 }
 
 buttonApplySettings.addEventListener("click", function() {
